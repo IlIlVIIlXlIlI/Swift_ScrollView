@@ -87,7 +87,16 @@ class ViewController: UIViewController,UIScrollViewDelegate{
         return contentView
     }
     
-    
+    //========================================================
+    // スクロールしたらページコントロールを更新する
+    //========================================================
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // カレントページを調べる
+        let pageNo = Int(scrollView.contentOffset.x / scrollView.frame.width)
+        
+        // 表示をカレントページに合わせる
+        pageControl.currentPage = pageNo
+    }
     
     
     override func viewDidLoad() {
