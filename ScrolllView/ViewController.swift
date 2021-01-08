@@ -101,6 +101,26 @@ class ViewController: UIViewController,UIScrollViewDelegate{
             Photo(imageName:"photo4",title:"Mojave")
         ]
         
+        // サブビューを作る
+        let subView = createContentsView(contentList: photoList)
+        // スクロールビューにサブビューを追加する
+        scrollView.addSubview(subView)
+        // スクロールビューの設定
+        scrollView.isPagingEnabled = true               // ページ送りする
+        scrollView.contentSize = subView.frame.size
+        scrollView.contentOffset = CGPoint(x: 0, y: 0)  // スクロール開始位置
+        
+        // スクロールビューのデリゲートになる
+        scrollView.delegate = self
+        
+        // ページコントロールを設定する
+        pageControl.numberOfPages = photoList.count
+        pageControl.currentPage = 0
+        
+        // ページコントロールのドットの色
+        pageControl.pageIndicatorTintColor = UIColor.lightGray
+        pageControl.currentPageIndicatorTintColor = UIColor.black
+        
     }
 
 
