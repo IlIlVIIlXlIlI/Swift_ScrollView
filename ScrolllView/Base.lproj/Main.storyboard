@@ -44,6 +44,10 @@
                             <constraint firstItem="HLe-kl-DfF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="52" id="vYr-eU-VY5"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="pageControl" destination="KXW-hn-NJs" id="AMy-fl-13v"/>
+                        <outlet property="scrollView" destination="HLe-kl-DfF" id="KZ5-4M-eGb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
