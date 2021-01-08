@@ -46,6 +46,49 @@ class ViewController: UIViewController,UIScrollViewDelegate{
         return pageView
     }
     
+    //========================================================
+    // コンテンツビューを作る
+    //========================================================
+    
+    func createContentsView(contentList: Array<Photo>) ->UIView {
+        // ページを追加するコンテンツビューを作る
+        let contentView = UIView()
+        
+        // 1ページの幅と高さ(幅はデバイスで変化するのでviewに合わせる)
+        let pageWidth = self.view.frame.width
+        let pageHeight = scrollView.frame.height
+        let pageViewRect = CGRect(x:0,y:0,width: pageWidth,height: pageHeight)
+        
+        // 写真の縦横サイズ(正方向)
+        let photoSize = CGSize(width: 250, height: 250)
+        // ページを並べたコンテンツビュー全体のサイズ
+        contentView.frame = CGRect(x:0,y:0,width: pageWidth*4,height: pageHeight)
+        // ページの背景色
+        let colors:Array<UIColor> = [.cyan,.yellow,.lightGray,.orange]
+        
+        // 写真コンテンツのページを作ってサブビューに追加する
+        for i in 0..<contentList.count
+        {
+            // 写真のファイル名とタイトルを順に取り出す
+            let contentItem = contentList[i]
+            // ページのビューを作る
+            let pageView = createPage(viewRect: pageViewRect, imageSize: photoSize, item: contentItem)
+            
+            // ページの表示座標を決める
+            let left = pageViewRect.width * CGFloat(i)
+            let xy = CGPoint(x: left,y: 0)
+            pageView.frame = CGRect(origin: xy, size: pageViewRect.size)
+            pageView.backgroundColor = colors[i]
+            
+            // コンテンツビューにページビューを並べて追加していく
+            contentView.addSubview(pageView)
+        }
+        
+        return contentView
+    }
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
